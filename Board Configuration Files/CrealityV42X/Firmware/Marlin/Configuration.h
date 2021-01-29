@@ -20,7 +20,7 @@
 // Uncomment the define line for what board you have (V4.2.2 or V4.2.7)
 //===========================================================================
 //#define ENDER3_V422_BOARD    //Ender 3 with V4.2.2 Board
-//#define ENDER3_V427_BOARD    //Ender 3 with V4.2.7 Board
+#define ENDER3_V427_BOARD    //Ender 3 with V4.2.7 Board
 
 //#define ENDER3_V2_V422_BOARD //Ender 3 V2 with V4.2.2 Board
 //#define ENDER3_V2_V427_BOARD //Ender 3 V2 with V4.2.7 Board
@@ -40,7 +40,7 @@
 //#define ENDER3_OEM
 //#define ENDER3_V2_OEM
 //#define ENDER5_OEM
-//#define CUSTOM_PROBE
+#define CUSTOM_PROBE
 
 // Ender 3 Specific Options
 
@@ -112,16 +112,16 @@
   *
   * Specify a Probe position as { X, Y, Z }
   * Do NOT enter an number for the Z position in here. Store your offset in EEPROM.
-  * 
+  *
   * When is the offset POSITIVE?
   * If the probe is right of the nozzle the offset on X is POSITIVE
   * If the probe is behind of the nozzle the offset on Y is POSITIVE
-  * 
+  *
   * When is the offset NEGATIVE?
   * If the probe is left of the nozzle the offset on X is NEGATIVE
   * If the probe is in front of the nozzle the offset on Y is NEGATIVE
   */
-  #define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 }
+  #define NOZZLE_TO_PROBE_OFFSET { -50, -5, 0 }
 #endif
 
 
@@ -143,7 +143,7 @@
 //#define REVERSE_E_MOTOR_DIRECTION
 
 // FILAMENT SENSOR UNLOAD SETTINGS -----------------
-// If you have a filament sensor that is physically mounted to the machine you can enable MOUNTED_FILAMENT_SENSOR to set the unload length to 0 to prevent filament from backing up in the sensor by uncommenting MOUNTED_FILAMENT_SENSOR 
+// If you have a filament sensor that is physically mounted to the machine you can enable MOUNTED_FILAMENT_SENSOR to set the unload length to 0 to prevent filament from backing up in the sensor by uncommenting MOUNTED_FILAMENT_SENSOR
 //#define MOUNTED_FILAMENT_SENSOR
 
 // If you have a direct drive machine with a filament sensor uncomment DIRECT_DRIVE_PRINTER to decrease the unload length from 100mm to 20mm
@@ -164,7 +164,7 @@
 // If you have a hotend and thermistor capable of over 290C you can set the max temp value below.
 // Setting this higher than 290C on a stock or traditional thermistor will damage it. Refer to your thermistor documentation to see what max temp is.
 //#define HIGH_TEMP_THERMISTOR
-#define HIGH_TEMP_THERMISTOR_TEMP 350
+#define HIGH_TEMP_THERMISTOR_TEMP 290
 
 // BED THERMISTOR SETTINGS -------------------------
 
@@ -218,7 +218,7 @@
 
 // FINE BABYSTEPPING -------------------------------
 // Enabling the below line will set the babystep resolution from 0.025mm to 0.010mm for finer control.
-//#define FINE_BABYSTEPPING
+#define FINE_BABYSTEPPING
 
 // LINEAR ADVANCE ----------------------------------
 // See here on how to use Linear Advance: http://marlinfw.org/docs/features/lin_advance.html
@@ -226,17 +226,16 @@
 // Change the K Value here or use M900 KX.XX in your starting code (recommended).
 #define LINEAR_ADVANCE_K 0
 
-// BL TOUCH ----------------------------------------
 // There are 2 ways to connect the BL Touch to the V4.2.X boards - All on the 5 pin header or using 3 pins on the 5 pin header + Z Endstop port
 // For details on these 2 types of connections refer to our help center article here: https://support.th3dstudio.com/hc/product-information/3rd-party-control-boards/creality-boards/creality-v4-2-2-v4-2-7-board-bl-touch-wiring-options/
 // If you want to use the BL-Touch uncomment the BLTOUCH line below and uncomment #define CUSTOM_PROBE above and then enter in your offsets above in the CUSTOM PROBE section.
-//#define BLTOUCH
+#define BLTOUCH
 // If you are using the 5 pin header for all the BL Touch connections, uncomment the below line
-//#define CREALITY_V42X_BLTOUCH_ON_5PIN
+#define CREALITY_V42X_BLTOUCH_ON_5PIN
 
 // MANUAL MESH LEVELING ----------------------------
 // If you want to use manual mesh leveling you can enable the below option. This is for generating a MANUAL mesh WITHOUT a probe.
-// Mesh Bed Leveling Documentation: http://marlinfw.org/docs/gcode/G029-mbl.html 
+// Mesh Bed Leveling Documentation: http://marlinfw.org/docs/gcode/G029-mbl.html
 // NOTE: If you want to automate the leveling process our EZABL kits do this for you. Check them out here: http://EZABL.TH3DStudio.com
 //#define MANUAL_MESH_LEVELING
 
@@ -264,7 +263,7 @@
 /**
  * Machine Configuration Settings
  */
- 
+
  //Ender 3/5 V42X Board Settings
 #if ENABLED(ENDER3_V422_BOARD) || ENABLED(ENDER5_V422_BOARD) || ENABLED(ENDER3_V427_BOARD) || ENABLED(ENDER5_V427_BOARD)
   //V42X with TMC Driver Sanity Checks
@@ -275,14 +274,14 @@
   #define SERIAL_PORT 1
 
   #define BAUDRATE 115200
-  
+
   #define CR10_STOCKDISPLAY
   #define RET6_12864_LCD
-  
+
   #if ENABLED(REVERSE_KNOB_DIRECTION)
     #define REVERSE_ENCODER_DIRECTION
   #endif
-  
+
   #if ENABLED(ENDER3_V422_BOARD) || ENABLED(ENDER5_V422_BOARD)
     #ifndef MOTHERBOARD
       #define MOTHERBOARD BOARD_CREALITY_V4
@@ -292,7 +291,7 @@
       #define MOTHERBOARD BOARD_CREALITY_V427
     #endif
   #endif
-  
+
   #if ENABLED(ENDER5_NEW_LEADSCREW)
     #define CREALITY_Z_STEPS 800
   #else
@@ -304,7 +303,7 @@
   #else
     #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, CREALITY_Z_STEPS, 95 }
   #endif
-  
+
   #define DEFAULT_MAX_FEEDRATE          { 200, 200, 15, 50 }
   #define DEFAULT_MAX_ACCELERATION      { 1000, 1000, 500, 5000 }
 
@@ -352,7 +351,7 @@
       #define Z_MAX_POS 250
     #endif
   #endif
-  
+
   #if ENABLED(HOME_ADJUST)
     #define X_MIN_POS X_HOME_LOCATION
     #define Y_MIN_POS Y_HOME_LOCATION
@@ -394,15 +393,15 @@
       #define TEMP_SENSOR_0 1
     #endif
   #endif
-  
-  #define TEMP_SENSOR_1 0 
+
+  #define TEMP_SENSOR_1 0
   #define TEMP_SENSOR_2 0
   #define TEMP_SENSOR_3 0
   #define TEMP_SENSOR_4 0
   #define TEMP_SENSOR_5 0
   #define TEMP_SENSOR_6 0
   #define TEMP_SENSOR_7 0
-  
+
   #if NONE(TH3D_BED_THERMISTOR, KEENOVO_TEMPSENSOR, KNOWN_BED_THERMISTOR, AC_BED)
     #define TEMP_SENSOR_BED 1
   #else
@@ -416,14 +415,14 @@
       #define TEMP_SENSOR_BED 11
     #endif
   #endif
-  
+
   #define TEMP_SENSOR_PROBE 0
   #define TEMP_SENSOR_CHAMBER 0
 
   #define DEFAULT_Kp 28.72
   #define DEFAULT_Ki 2.62
   #define DEFAULT_Kd 78.81
-  
+
   #define DEFAULT_bedKp 462.10
   #define DEFAULT_bedKi 85.47
   #define DEFAULT_bedKd 624.59
@@ -465,10 +464,10 @@
 
   #define INVERT_X_DIR false
   #define INVERT_Y_DIR false
-  
+
   #if ENABLED(ENDER5_V422_BOARD) || ENABLED(ENDER5_V427_BOARD)
     #define INVERT_Z_DIR false
-  #else  
+  #else
     #define INVERT_Z_DIR true
   #endif
 
@@ -477,7 +476,7 @@
   #else
     #define INVERT_E0_DIR false
   #endif
-  
+
   #define INVERT_E1_DIR false
   #define INVERT_E2_DIR false
   #define INVERT_E3_DIR false
@@ -488,7 +487,7 @@
 
   #define ENCODER_PULSES_PER_STEP 4
   #define ENCODER_STEPS_PER_MENU_ITEM 1
-  
+
   #if ENABLED(EZOUT_ENABLE)
     #define FILAMENT_RUNOUT_SENSOR
     #define SPEAKER_KILL
@@ -520,12 +519,12 @@
 
 #endif
 // End Ender 3/5 V42X Board Settings
- 
+
 // Ender 3 V2 Settings
 #if ENABLED(ENDER3_V2_V422_BOARD) || ENABLED(ENDER3_V2_V427_BOARD)
   #define SERIAL_PORT 1
   #define SERIAL_PORT_2 3
-  
+
   #if ENABLED(MANUAL_MESH_LEVELING)
     #error "Due to closed source LCD firmware, Manual Mesh Leveling is not available on the Ender 3 V2."
   #endif
@@ -547,7 +546,7 @@
   #else
     #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 95 }
   #endif
-  
+
   #define DEFAULT_MAX_FEEDRATE          { 200, 200, 15, 50 }
   #define DEFAULT_MAX_ACCELERATION      { 1000, 1000, 500, 5000 }
 
@@ -595,15 +594,15 @@
       #define TEMP_SENSOR_0 1
     #endif
   #endif
-  
-  #define TEMP_SENSOR_1 0 
+
+  #define TEMP_SENSOR_1 0
   #define TEMP_SENSOR_2 0
   #define TEMP_SENSOR_3 0
   #define TEMP_SENSOR_4 0
   #define TEMP_SENSOR_5 0
   #define TEMP_SENSOR_6 0
   #define TEMP_SENSOR_7 0
-  
+
   #if NONE(TH3D_BED_THERMISTOR, KEENOVO_TEMPSENSOR, KNOWN_BED_THERMISTOR, AC_BED)
     #define TEMP_SENSOR_BED 1
   #else
@@ -617,14 +616,14 @@
       #define TEMP_SENSOR_BED 11
     #endif
   #endif
-  
+
   #define TEMP_SENSOR_PROBE 0
   #define TEMP_SENSOR_CHAMBER 0
 
   #define DEFAULT_Kp 28.72
   #define DEFAULT_Ki 2.62
   #define DEFAULT_Kd 78.81
-  
+
   #define DEFAULT_bedKp 462.10
   #define DEFAULT_bedKi 85.47
   #define DEFAULT_bedKd 624.59
@@ -666,7 +665,7 @@
   #else
     #define INVERT_E0_DIR false
   #endif
-  
+
   #define INVERT_E1_DIR false
   #define INVERT_E2_DIR false
   #define INVERT_E3_DIR false
@@ -685,7 +684,7 @@
   #define EXTRUDE_MAXLENGTH 1000
 
   #define POWER_LOSS_RECOVERY
-  
+
   #if ENABLED(EZOUT_ENABLE)
     #define FILAMENT_RUNOUT_SENSOR
     #define SPEAKER_KILL
@@ -714,12 +713,12 @@
       //#define FILAMENT_MOTION_SENSOR
     #endif
   #endif
-  
+
 #endif
 // End Ender 3 V2 Settings
 
 /*
  * All other settings are stored in the Configuration_backend.h file. Do not change unless you know what you are doing.
  */
- 
+
 #include "Configuration_backend.h"
