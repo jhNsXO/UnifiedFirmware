@@ -121,7 +121,7 @@
   * If the probe is left of the nozzle the offset on X is NEGATIVE
   * If the probe is in front of the nozzle the offset on Y is NEGATIVE
   */
-  #define NOZZLE_TO_PROBE_OFFSET { -45, -6, 0 }
+  #define NOZZLE_TO_PROBE_OFFSET { -44, -6, 0 }
 #endif
 
 
